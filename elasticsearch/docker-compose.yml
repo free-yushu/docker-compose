@@ -2,29 +2,16 @@ version: '3'
 
 services:
   elasticsearch:
-    image: elasticsearch:6.8.6
+    image: elasticsearch:7.14.1
     # restart: always
     environment:
       discovery.type: "single-node"
-      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      ES_JAVA_OPTS: "-Xms2048m -Xmx2048m"
+      ELASTIC_PASSWORD: "123456" # 配置密码
     ports:
       - 9200:9200
       - 9300:9300
     volumes: 
       - ./es/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - ./es/data:/usr/share/elasticsearch/data
-      # - ./es/plugins:/usr/share/elasticsearch/plugins
-  head:
-    image: mobz/elasticsearch-head:5-alpine
-    # restart: always
-    ports:
-      - 9100:9100
-  kibana:
-    image: kibana:6.8.6
-    # restart: always
-    environment:
-      discovery.type: "single-node"
-    ports:
-      - 5601:5601
-    volumes: 
-      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml
+      # - ./es/plugins:/usr/share/elasticsearch/plugin

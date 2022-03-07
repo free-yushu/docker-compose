@@ -1,4 +1,7 @@
-cluster.name: "docker-cluster"
+cluster.name: "dockerCluster"
 network.host: 0.0.0.0
 http.cors.enabled: true
 http.cors.allow-origin: "*"
+xpack.security.audit.enabled: true
+# 需要用户名密码访问
+xpack.security.enabled: true
